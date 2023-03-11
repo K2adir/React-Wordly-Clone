@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../../styles.css";
 import GuessResults from "../GuessResults/GuessResults";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { range } from "../../utils";
 
 function Guess() {
   const [input, setInput] = useState("");
-  const [submitted, setSubmitted] = useState([""]);
+  const [submitted, setSubmitted] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,10 +17,8 @@ function Guess() {
   return (
     <>
       <div className=" ">
-        {submitted.map((guess, index) => (
-          <div className="guess-results" key={index}>
-            <GuessResults value={guess} />
-          </div>
+        {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
+          <GuessResults key={num} value={submitted[num]} />
         ))}
       </div>
 

@@ -13,7 +13,7 @@ console.info({ answer });
 function Game() {
   return (
     <>
-      <GuessResults />
+      {/* <GuessResults /> */}
       <Guess />
     </>
   );
