@@ -15,15 +15,17 @@ function Guess() {
     <>
       <div className=" ">
         {submitted.map((text, index) => (
-          <div key={index}>{text}</div>
+          <div className="guess-results" key={index}>
+            <p className="guess">{text}</p>
+          </div>
         ))}
       </div>
 
       <form onSubmit={handleSubmit} className="guess-input-wrapper">
         <label htmlFor="guess-input">Enter guess:</label>
         <input
-          maxLength="5"
-          minLength="5"
+          maxLength={5}
+          minLength={5}
           value={input}
           id="guess-input"
           type="text"
