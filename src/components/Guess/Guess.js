@@ -4,7 +4,7 @@ import GuessResults from "../GuessResults/GuessResults";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { range } from "../../utils";
 
-function Guess() {
+function Guess({ answer }) {
   const [input, setInput] = useState("");
   const [submitted, setSubmitted] = useState([]);
 
@@ -14,11 +14,17 @@ function Guess() {
     setInput("");
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && input.length < 5) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <>
       <div className=" ">
         {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
-          <GuessResults key={num} value={submitted[num]} />
+          <GuessResults key={num} value={submitted[num]} answer={answer} />
         ))}
       </div>
 
@@ -33,6 +39,7 @@ function Guess() {
           onChange={(e) => {
             setInput(e.target.value.toUpperCase());
           }}
+          onKeyDown={handleKeyDown}
         />
         {input.length >= 5 && <button type="submit">Submit</button>}
       </form>
